@@ -81,10 +81,14 @@ def load_songs(csv_path: str) -> List[Dict]:
 # against jarring cross-genre picks; mood is lower because it overlaps with
 # energy/valence.
 WEIGHTS = {
-    "genre": 3.0,
-    "energy": 2.0,
+    # Tuned to mirror how people actually listen: they reach for a *vibe*
+    # (energy) first and cross genres freely when the feeling fits, so energy
+    # leads and genre is a strong signal rather than a hard gate. Mood is
+    # raised alongside valence because emotional fit matters as much as style.
+    "energy": 3.0,
+    "genre": 2.0,
+    "mood": 2.0,
     "valence": 2.0,
-    "mood": 1.0,
     "danceability": 1.0,
     "acousticness": 1.0,
     "tempo": 1.0,
@@ -106,10 +110,10 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     """
     Scores a single song against user preferences (the "Scoring Rule").
 
-    Scoring recipe:
-      - Genre match:  +3.0 points (exact match only)
-      - Mood match:   +1.0 points (exact match only)
-      - Each numeric feature (energy 2.0, valence 2.0, danceability 1.0,
+    Scoring recipe (see WEIGHTS above):
+      - Genre match:  +2.0 points (exact match only)
+      - Mood match:   +2.0 points (exact match only)
+      - Each numeric feature (energy 3.0, valence 2.0, danceability 1.0,
         acousticness 1.0, tempo 1.0) awards its weight scaled by closeness,
         `weight * (1 - abs(target - value))`. Tempo is normalized to 0-1
         first. The weighted total is divided by the sum of weights so the
@@ -117,7 +121,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
 
     Returns a tuple of (score, reasons), where `reasons` is a list of
     human-readable strings explaining where the points came from,
-    e.g. "genre match: lofi (+3.0)".
+    e.g. "genre match: lofi (+2.0)".
     """
     total = 0.0
     reasons: List[str] = []
