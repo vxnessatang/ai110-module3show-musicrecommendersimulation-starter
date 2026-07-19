@@ -11,7 +11,7 @@ Your goal is to:
 - Evaluate what your system gets right and wrong
 - Reflect on how this mirrors real world AI recommenders
 
-My version, **VibeMatch 1.0**, is a content-based music recommender that runs
+My version, **SoundMatch**, is a content-based music recommender that runs
 from the command line. It loads a catalog of 19 songs, compares each one to a
 user's "taste profile" (a favorite genre and mood plus target values for energy,
 valence, danceability, acousticness, and tempo), and gives every song a 0-1

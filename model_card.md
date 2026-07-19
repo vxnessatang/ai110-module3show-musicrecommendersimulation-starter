@@ -2,7 +2,7 @@
 
 ## 1. Model Name
 
-**VibeMatch 1.0**
+**SoundMatch**
 
 A song recommender that matches music to your mood and taste.
 
@@ -10,7 +10,7 @@ A song recommender that matches music to your mood and taste.
 
 ## 2. Intended Use
 
-VibeMatch suggests songs that fit a listener's stated taste.
+SoundMatch suggests songs that fit a listener's stated taste.
 
 - It generates a ranked list of the top songs from a small catalog.
 - It assumes the user can describe what they like: a favorite genre, a favorite mood, and target values for things like energy, valence, danceability, acousticness, and tempo.
@@ -27,7 +27,7 @@ VibeMatch suggests songs that fit a listener's stated taste.
 
 ## 3. How the Model Works
 
-VibeMatch gives every song a score, then picks the highest-scoring ones.
+SoundMatch gives every song a score, then picks the highest-scoring ones.
 
 - It looks at each song's **genre**, **mood**, **energy**, **valence** (how happy/positive it sounds), **danceability**, **acousticness**, and **tempo** (BPM).
 - It compares those to what the user says they want.
